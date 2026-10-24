@@ -1,0 +1,322 @@
+/* Shared foundations. Component styles live in their own files. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #111111;
+  font-family: Arial, "Noto Sans TC", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Structural offset shared by every page; components own their content styles. */
+main {
+  padding-top: 86px;
+}
+
+main:has(> .banner) {
+  padding-top: 0;
+}
+
+html:has(.top-bar.open, .zoom[open]) {
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+p,
+figure,
+ol,
+ul {
+  margin: 0;
+}
+
+ol,
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+button,
+a,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.wrap {
+  width: min(100% - 96px, 1280px);
+  margin-inline: auto;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid > * {
+  min-width: 0;
+}
+
+.pic {
+  overflow: hidden;
+}
+
+.link {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+}
+
+/* Shared carousel mechanics; each carousel block sets its own dimensions. */
+.swiper {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.swiper-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  box-sizing: content-box;
+  transition-property: transform;
+}
+
+.swiper-slide {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-fade .swiper-slide {
+  pointer-events: none;
+  transition-property: opacity;
+}
+
+.swiper-fade .swiper-slide-active {
+  pointer-events: auto;
+}
+
+.swiper:not(.swiper-initialized) .swiper-slide:not(:first-child) {
+  display: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.display {
+  font-family: inherit;
+  font-weight: 900;
+  letter-spacing: -.065em;
+  line-height: 1;
+}
+
+.display em {
+  font-family: inherit;
+  font-weight: 400;
+  letter-spacing: -.065em;
+}
+
+/* Shared homepage/detail link: quiet text and a short chevron. */
+a.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-block: 12px;
+  color: #111111;
+  opacity: .4;
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color 250ms ease, opacity 250ms ease;
+}
+
+a.more svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  transition: transform 300ms ease;
+}
+
+a.more:not([aria-disabled="true"]):is(:hover, :focus-visible) {
+  color: #dfa30f;
+  opacity: 1;
+}
+
+a.more[aria-disabled="true"] {
+  opacity: .2;
+  cursor: default;
+}
+
+a.more:focus-visible {
+  outline: 2px solid #dfa30f;
+  outline-offset: 5px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 25px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.logo img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+/* Small vinyl record back-to-top control. */
+.goTop {
+  position: fixed;
+  z-index: 90;
+  right: 15px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border: 1px solid #555;
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, #171717 0 2px, #343434 2px 3px, #111111 3px 5px);
+  box-shadow: 0 3px 12px #0002;
+}
+
+.goTop .label {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #666;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #111111;
+  color: #ffffff;
+  transition: background-color 240ms ease, color 240ms ease;
+}
+
+.goTop .label > svg,
+.goTop .label > span {
+  grid-area: 1 / 1;
+  transition: transform 240ms cubic-bezier(.22, 1, .36, 1), opacity 180ms ease;
+}
+
+.goTop .label > svg { width: 20px; height: 20px; }
+.goTop .label > span {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  opacity: 0;
+  transform: translateY(15px);
+  color: #ffffff;
+}
+
+.goTop:hover .label,
+.goTop:focus-visible .label { background: #dfa30f; color: #111111; border-color: #dfa30f; }
+.goTop:hover svg,
+.goTop:focus-visible svg { opacity: 0; transform: translateY(-15px); }
+.goTop:hover .label > span,
+.goTop:focus-visible .label > span { opacity: 1; transform: translateY(0); }
+.goTop:focus-visible { outline: 2px solid #dfa30f; outline-offset: 4px; }
+
+@media (max-width: 992px) {
+  main {
+    padding-top: 70px;
+  }
+
+  .wrap {
+    width: calc(100% - 60px);
+  }
+}
+
+@media (max-width: 576px) {
+  .goTop {
+    right: 15px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    width: 50px;
+    height: 50px;
+  }
+
+  .wrap {
+    width: calc(100% - 40px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
