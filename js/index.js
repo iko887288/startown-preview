@@ -384,21 +384,25 @@
       });
       media.add({
         all: '(min-width: 0px)',
-        compact: '(max-width: 992px)',
         reduce: '(prefers-reduced-motion: reduce)'
       }, context => {
         if (context.conditions.reduce || !itinerarySlider || !itineraries || itineraryEntrancePlayed) return;
-        const timeline = gsap.timeline({
-          onStart: () => { itineraryEntrancePlayed = true; },
-          scrollTrigger: { trigger: itineraries, start: 'top 85%', once: true }
+        // Set the waiting state once. Mobile resize/refresh must never replay a from-state.
+        gsap.set(itineraries, { opacity: 0 });
+        const timeline = gsap.to(itineraries, {
+          opacity: 1, duration: .7, ease: 'power1.out', clearProps: 'opacity', paused: true
         });
-        timeline.fromTo(itineraries,
-          { opacity: 0 },
-          { opacity: 1, duration: .7, ease: 'power1.out', clearProps: 'opacity' });
+        const entrance = window.ScrollTrigger.create({
+          trigger: itineraries, start: 'top 85%', once: true,
+          onEnter: () => {
+            itineraryEntrancePlayed = true;
+            timeline.play();
+          }
+        });
         // Navigation immediately settles the entrance so the carousel stays responsive.
         const settle = () => {
           itineraryEntrancePlayed = true;
-          timeline.scrollTrigger?.kill();
+          entrance.kill();
           timeline.progress(1).kill();
           gsap.set(itineraries, { clearProps: 'opacity' });
         };
