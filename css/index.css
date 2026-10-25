@@ -1,4 +1,4 @@
-﻿/* Homepage: wide editorial grids, restrained motion and image-led navigation. */
+/* Homepage: wide editorial grids, restrained motion and image-led navigation. */
 .en {
   font-weight: 700;
 }
@@ -16,7 +16,8 @@
 
 .banner picture img {
   width: 100%;
-  height: auto;
+  height: 100vh;
+  height: 100svh;
   object-fit: cover;
 }
 
@@ -74,7 +75,8 @@
   }
 
   .banner picture img {
-    height: 560px;
+    height: max(560px, 65vh);
+    height: max(560px, 65svh);
     object-position: 72% center;
   }
 
@@ -97,20 +99,12 @@
 }
 
 @media (max-width: 576px) {
-  .banner picture img {
-    height: 520px;
-  }
-
   .banner .tw {
     font-size: 14px;
   }
 }
 
 @media (max-width: 350px) {
-  .banner picture img {
-    height: 500px;
-  }
-
   .banner .txt {
     padding-bottom: 32px;
   }
