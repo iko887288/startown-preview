@@ -89,8 +89,27 @@
     window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
   });
 
-  function closeMenu() {
+  const mobileMenu = window.matchMedia('(max-width: 992px)');
+  let menuCloseTimer;
+  function finishMenuClose() {
+    if (header.classList.contains('open')) return;
+    header.classList.remove('menu-closing');
+    if (search.hidden) {
+      searchBackground.forEach(element => { element.inert = false; });
+      header.querySelector('.logo').inert = false;
+    }
+  }
+  function closeMenu(immediate = false) {
+    const wasOpen = header.classList.contains('open');
+    clearTimeout(menuCloseTimer);
+    menu.inert = mobileMenu.matches;
+    if (wasOpen && !immediate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      header.classList.add('menu-closing');
+      menuCloseTimer = setTimeout(finishMenuClose, 750);
+    } else if (!header.classList.contains('menu-closing') || immediate) finishMenuClose();
     header.classList.remove('open');
+    if (menu.contains(document.activeElement)) menuBtn.focus({ preventScroll: true });
+    if (immediate) finishMenuClose();
     menuBtn.setAttribute('aria-expanded', 'false');
     menuBtn.setAttribute('aria-label', '開啟選單');
   }
@@ -102,7 +121,7 @@
     clearTimeout(closeTimer);
     setSearchBackground(false);
     search.hidden = true;
-    menu.inert = false;
+    menu.inert = mobileMenu.matches && !header.classList.contains('open');
     header.classList.remove('search-open', 'search-closing');
     searchBtn.setAttribute('aria-expanded', 'false');
     searchBtn.setAttribute('aria-label', '開啟搜尋');
@@ -134,6 +153,12 @@
   menuBtn.addEventListener('click', () => {
     const opening = !header.classList.contains('open');
     closeSearch(true, false);
+    if (!opening) return closeMenu();
+    clearTimeout(menuCloseTimer);
+    header.classList.remove('menu-closing');
+    menu.inert = false;
+    searchBackground.forEach(element => { element.inert = true; });
+    header.querySelector('.logo').inert = true;
     header.classList.toggle('open', opening);
     setAway(false);
     resetDirection();
@@ -144,7 +169,7 @@
   searchBtn.addEventListener('click', () => {
     const opening = search.hidden || header.classList.contains('search-closing');
     if (!opening) return closeSearch();
-    closeMenu();
+    closeMenu(true);
     clearTimeout(closeTimer);
     const firstOpen = search.hidden;
     search.hidden = false;
@@ -171,7 +196,9 @@
     // Search results will be connected when the shared content search is available.
   });
 
-  header.querySelectorAll('.menu a').forEach(link => link.addEventListener('click', closeMenu));
+  header.querySelectorAll('.menu a').forEach(link => link.addEventListener('click', () => closeMenu()));
+  header.querySelector('.menu-backdrop').addEventListener('click', () => closeMenu());
+  menu.inert = mobileMenu.matches;
   document.addEventListener('click', event => {
     if (!search.hidden && !header.contains(event.target)) {
       const restoreFocus = search.contains(document.activeElement);
@@ -179,6 +206,12 @@
     }
   });
   document.addEventListener('keydown', event => {
+    if (event.key === 'Tab' && header.classList.contains('open')) {
+      const links = [...menu.querySelectorAll('a')];
+      if (event.shiftKey && document.activeElement === links[0]) { event.preventDefault(); menuBtn.focus(); }
+      else if (!event.shiftKey && document.activeElement === menuBtn) { event.preventDefault(); links[0].focus(); }
+      return;
+    }
     if (event.key === 'Tab' && header.classList.contains('search-closing')) {
       event.preventDefault();
       return;
@@ -197,7 +230,7 @@
     if (header.classList.contains('open')) { closeMenu(); menuBtn.focus(); }
   });
   window.matchMedia('(max-width: 992px)').addEventListener('change', event => {
-    closeMenu();
+    closeMenu(true);
     if (!search.hidden) closeSearch(true);
   });
 

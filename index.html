@@ -15,25 +15,27 @@
   <link rel="preload" href="images/home/banner.jpg" as="image" fetchpriority="high">
   <link rel="stylesheet" href="css/fonts.css?v=1">
   <link rel="stylesheet" href="css/common.css?v=12">
-  <link rel="stylesheet" href="css/cms-header.css?v=28">
+  <link rel="stylesheet" href="css/cms-header.css?v=29">
   <link rel="stylesheet" href="css/index.css?v=105">
   <link rel="stylesheet" href="css/cms-footer.css?v=11">
   <script src="js/vendor/swiper-bundle.min.js" defer></script>
   <script src="js/vendor/gsap.min.js?v=3.15.0" defer></script>
   <script src="js/vendor/ScrollTrigger.min.js?v=3.15.0" defer></script>
-  <script src="js/common.js?v=17" defer></script>
+  <script src="js/common.js?v=18" defer></script>
   <script src="js/index.js?v=43" defer></script>
 </head>
 <body>
   <!-- Shared header: edit this template for every page. -->
   <header class="top-bar" id="top-bar">
+    <button class="menu-backdrop" type="button" tabindex="-1" aria-label="關閉選單"></button>
     <button class="search-backdrop" type="button" tabindex="-1" aria-hidden="true"></button>
     <nav aria-label="主選單">
       <div class="wrap">
         <div class="logo">
           <a href="#" aria-label="STarTown 首頁"><img src="images/logo.png" width="595" height="595" alt=""><span>STarTown</span></a>
         </div>
-        <div class="menu">
+        <div class="menu" id="site-menu">
+          <div class="menu-brand" aria-hidden="true"><img src="images/logo.png" width="38" height="38" alt=""><span>STarTown</span></div>
           <div class="sjj_nav">
             <ul class="sjj_nav_ul">
               <li><a href="#">關於 STarTown</a></li>
@@ -42,6 +44,7 @@
               <li><a href="#">韓流行程</a></li>
             </ul>
           </div>
+          <small class="menu-note">© 2026 STarTown. All rights reserved.</small>
         </div>
       <form class="search" id="site-search" role="search" action="#" hidden>
         <label class="sr-only" for="site-query">搜尋藝人、地點或行程</label>
@@ -60,7 +63,7 @@
         </div>
       </div>
       <div class="sp_header">
-        <button class="sp_nav" type="button" aria-label="開啟選單" aria-expanded="false"><span></span><span></span><span></span></button>
+        <button class="sp_nav" type="button" aria-controls="site-menu" aria-label="開啟選單" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>
   </header>
