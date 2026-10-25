@@ -447,8 +447,11 @@ html:has(.top-bar.search-open) {
   }
 
   .top-bar.open .menu-backdrop { opacity: 1; visibility: visible; transition-delay: 0s; }
-  .top-bar:is(.open, .menu-closing) .sp_header { z-index: 4; color: #ffffff; }
-  .top-bar:is(.open, .menu-closing) .links { visibility: hidden; }
+  .top-bar:is(.open, .menu-closing) .sp_header { z-index: 4; }
+  .top-bar .sp_header { transition: color 250ms ease; }
+  .top-bar.open .sp_header { color: #ffffff; }
+  .top-bar .links { transition: opacity 250ms ease; }
+  .top-bar.open .links { opacity: 0; pointer-events: none; }
   .top-bar .sp_nav span { transition: transform 300ms ease, opacity 200ms ease; }
   .top-bar .sp_nav::after { content: ''; position: absolute; inset: -4px -7px; }
   .top-bar .sjj_nav_ul { flex-direction: column; align-items: flex-start; gap: 12px; }

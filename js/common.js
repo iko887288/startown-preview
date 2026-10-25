@@ -93,6 +93,7 @@
   let menuCloseTimer;
   function finishMenuClose() {
     if (header.classList.contains('open')) return;
+    clearTimeout(menuCloseTimer);
     header.classList.remove('menu-closing');
     if (search.hidden) {
       searchBackground.forEach(element => { element.inert = false; });
@@ -108,11 +109,16 @@
       menuCloseTimer = setTimeout(finishMenuClose, 750);
     } else if (!header.classList.contains('menu-closing') || immediate) finishMenuClose();
     header.classList.remove('open');
+    header.querySelector('.links').inert = false;
     if (menu.contains(document.activeElement)) menuBtn.focus({ preventScroll: true });
     if (immediate) finishMenuClose();
     menuBtn.setAttribute('aria-expanded', 'false');
     menuBtn.setAttribute('aria-label', '開啟選單');
   }
+
+  menu.addEventListener('transitionend', event => {
+    if (event.target === menu && event.propertyName === 'transform' && header.classList.contains('menu-closing')) finishMenuClose();
+  });
 
   let closeTimer;
   let restoreSearchFocus = true;
@@ -157,6 +163,7 @@
     clearTimeout(menuCloseTimer);
     header.classList.remove('menu-closing');
     menu.inert = false;
+    header.querySelector('.links').inert = true;
     searchBackground.forEach(element => { element.inert = true; });
     header.querySelector('.logo').inert = true;
     header.classList.toggle('open', opening);
