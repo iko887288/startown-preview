@@ -30,25 +30,25 @@
 
 @media (scripting: enabled) {
   /* A normal-flow opening banner allows the shared fixed header to overlay it. */
-  .top-bar:has(+ main > .banner):not(.scrolled, .open, .search-open) {
+  .top-bar:has(+ main > .banner):not(.scrolled, .search-open) {
     background: transparent;
     color: #ffffff;
   }
 
-  .top-bar:has(+ main > .banner):not(.scrolled, .open, .search-open) .menu a {
+  .top-bar:has(+ main > .banner):not(.scrolled, .search-open) .menu a {
     color: #ffffff;
   }
 
-  .top-bar:has(+ main > .banner):not(.scrolled, .open, .search-open) .menu a:is(:hover, :focus-visible) {
+  .top-bar:has(+ main > .banner):not(.scrolled, .search-open) .menu a:is(:hover, :focus-visible) {
     color: #ffffff;
   }
 
-  .top-bar:has(+ main > .banner):not(.scrolled, .open, .search-open) .menu:has(a:focus-visible) a:not(:focus-visible) {
+  .top-bar:has(+ main > .banner):not(.scrolled, .search-open) .menu:has(a:focus-visible) a:not(:focus-visible) {
     color: rgb(255 255 255 / 60%);
   }
 
   @media (hover: hover) {
-    .top-bar:has(+ main > .banner):not(.scrolled, .open, .search-open) .menu:has(a:hover) a:not(:hover) {
+    .top-bar:has(+ main > .banner):not(.scrolled, .search-open) .menu:has(a:hover) a:not(:hover) {
       color: rgb(255 255 255 / 60%);
     }
   }
@@ -436,7 +436,7 @@ html:has(.top-bar.search-open) {
     inset: 0;
     height: 100dvh;
     width: 100%;
-    background: rgb(0 0 0 / 40%);
+    background: transparent;
     opacity: 0;
     visibility: hidden;
     transition: opacity 700ms ease, visibility 0s 700ms;
@@ -447,8 +447,7 @@ html:has(.top-bar.search-open) {
   .top-bar:is(.open, .menu-closing) .sp_header { z-index: 4; }
   .top-bar .sp_header { transition: color 250ms ease; }
   .top-bar.open .sp_header { color: #ffffff; }
-  .top-bar .links { transition: opacity 250ms ease; }
-  .top-bar.open .links { opacity: 0; pointer-events: none; }
+  .top-bar.open .links { pointer-events: none; }
   .top-bar .sp_nav span { transition: transform 300ms ease, opacity 200ms ease; }
   .top-bar .sp_nav::after { content: ''; position: absolute; inset: -4px -7px; }
   .top-bar .sjj_nav_ul { flex-direction: column; align-items: flex-start; gap: 12px; }
