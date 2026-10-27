@@ -27,6 +27,7 @@ main {
 .notice,
 .map,
 .actions,
+.guide,
 .help {
   background: #fff;
 }
@@ -154,9 +155,10 @@ main {
 }
 
 .actions p {
-  margin: 0 0 16px;
+  margin: 12px 0 0;
   color: #65768d;
   font-size: 14px;
+  text-align: center;
 }
 
 .entry {
@@ -192,6 +194,109 @@ main {
 .entry:focus-visible {
   outline: 3px solid #296491;
   outline-offset: 4px;
+}
+
+.guide {
+  padding: 28px 40px 0;
+}
+
+.guide details {
+  border-bottom: 1px solid #e0e6ed;
+}
+
+.guide details:first-child {
+  border-top: 1px solid #e0e6ed;
+}
+
+.guide summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 60px;
+  padding: 16px 0;
+  color: #263c53;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.guide summary::-webkit-details-marker {
+  display: none;
+}
+
+.guide summary::after {
+  content: "";
+  flex: 0 0 9px;
+  width: 9px;
+  height: 9px;
+  margin: 0 5px 5px 0;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.guide details[open] > summary::after {
+  margin-top: 5px;
+  margin-bottom: 0;
+  transform: rotate(225deg);
+}
+
+.guide summary:hover {
+  color: #196d6f;
+}
+
+.guide summary:focus-visible {
+  outline: 3px solid #296491;
+  outline-offset: 3px;
+}
+
+.guide .txt {
+  padding: 0 0 24px;
+  color: #65768d;
+}
+
+.guide p {
+  margin: 0;
+}
+
+.guide h3 {
+  margin: 0 0 6px;
+  color: #263c53;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin: 24px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps .num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  color: #196d6f;
+  background: #e3f1ef;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.issues {
+  display: grid;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .help {
@@ -288,6 +393,35 @@ main {
     padding: 18px 20px 0;
   }
 
+  .guide {
+    padding: 24px 20px 0;
+    font-size: 14px;
+  }
+
+  .guide summary {
+    font-size: 16px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    margin: 20px 0;
+  }
+
+  .steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .steps .num {
+    flex: 0 0 36px;
+    margin: 0;
+  }
+
+  .steps li > div {
+    min-width: 0;
+  }
+
   .entry {
     gap: 8px;
     padding: 16px;
@@ -362,6 +496,7 @@ main {
   }
 
   .actions,
+  .guide,
   .help {
     padding-right: 16px;
     padding-left: 16px;
