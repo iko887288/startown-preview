@@ -124,6 +124,10 @@ main {
   color: #65768d;
 }
 
+.notice p + p {
+  margin-top: 6px;
+}
+
 .map {
   padding: 28px 40px 0;
 }
@@ -192,6 +196,32 @@ main {
 .entry:focus-visible {
   outline: 3px solid #296491;
   outline-offset: 4px;
+}
+
+.alt {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.alt a {
+  display: inline-block;
+  padding: 10px 0;
+  color: #263c53;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.alt a:hover {
+  color: #65768d;
+}
+
+.alt a:focus-visible {
+  outline: 2px solid #296491;
+  outline-offset: 4px;
+}
+
+.alt p {
+  margin: 4px 0 0;
 }
 
 .help {
