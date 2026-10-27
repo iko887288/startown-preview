@@ -1,0 +1,379 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: #1b2b40;
+  background: #eaf0f5;
+  font-family: Arial, "Noto Sans TC", sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
+}
+
+main {
+  padding: 40px 24px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.brand,
+.intro,
+.notice,
+.map,
+.actions,
+.help {
+  background: #fff;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 28px 40px;
+  border-bottom: 1px solid #e0e6ed;
+  border-radius: 24px 24px 0 0;
+}
+
+.logo {
+  color: #12314e;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -.8px;
+  line-height: 1.2;
+}
+
+.badge {
+  padding: 3px 18px;
+  border-radius: 12px;
+  color: #17695e;
+  background: #e3f1ef;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+
+.intro {
+  padding: 32px 40px 24px;
+}
+
+.intro h1 {
+  margin: 0 0 8px;
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.intro p {
+  margin: 0;
+  color: #65768d;
+  font-size: 18px;
+}
+
+.intro h1 span {
+  white-space: nowrap;
+}
+
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 0;
+  padding: 24px 40px;
+  position: relative;
+  isolation: isolate;
+}
+
+.notice::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 40px;
+  border-radius: 12px;
+  background: #f0f5fb;
+}
+
+.notice > svg {
+  flex: 0 0 26px;
+  width: 26px;
+  height: 26px;
+  margin: 5px 0 0 20px;
+  color: #296491;
+}
+
+.notice .txt {
+  min-width: 0;
+  padding-right: 20px;
+}
+
+.notice h2 {
+  margin: 0 0 6px;
+  color: #263c53;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.notice p {
+  margin: 0;
+  color: #65768d;
+}
+
+.map {
+  padding: 28px 40px 0;
+}
+
+.map h2 {
+  margin: 0;
+  padding: 16px 20px;
+  border: 1px solid #d5dfe8;
+  border-bottom: 0;
+  border-radius: 12px 12px 0 0;
+  background: #f7fafc;
+  color: #263c53;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.map iframe {
+  display: block;
+  width: 100%;
+  height: 560px;
+  border: 1px solid #d5dfe8;
+  border-radius: 0 0 12px 12px;
+  background: #f0f4f5;
+}
+
+.actions {
+  padding: 20px 40px 0;
+}
+
+.actions p {
+  margin: 0 0 16px;
+  color: #65768d;
+  font-size: 14px;
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  color: #fff;
+  background: #196d6f;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color .2s ease;
+}
+
+.entry > span:first-child {
+  min-width: 0;
+}
+
+.entry > svg {
+  flex: 0 0 22px;
+}
+
+.entry:hover {
+  background: #12585a;
+}
+
+.entry:focus-visible {
+  outline: 3px solid #296491;
+  outline-offset: 4px;
+}
+
+.help {
+  padding: 28px 40px 36px;
+  border-radius: 0 0 24px 24px;
+  color: #65768d;
+  text-align: center;
+}
+
+.help p {
+  margin: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+  main {
+    padding: 20px 12px;
+  }
+
+  .brand {
+    padding: 24px 20px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .logo {
+    font-size: 27px;
+  }
+
+  .badge {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .intro {
+    padding: 24px 20px 20px;
+  }
+
+  .intro p {
+    font-size: 16px;
+  }
+
+  .notice {
+    gap: 10px;
+    padding: 20px;
+  }
+
+  .notice::before {
+    right: 20px;
+    left: 20px;
+  }
+
+  .notice > svg {
+    margin-left: 14px;
+    flex-basis: 24px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .notice .txt {
+    padding-right: 14px;
+  }
+
+  .notice h2 {
+    font-size: 17px;
+  }
+
+  .notice p {
+    font-size: 14px;
+  }
+
+  .map {
+    padding: 24px 20px 0;
+  }
+
+  .map h2 {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .map iframe {
+    height: 520px;
+  }
+
+  .actions {
+    padding: 18px 20px 0;
+  }
+
+  .entry {
+    gap: 8px;
+    padding: 16px;
+    font-size: 16px;
+  }
+
+  .help {
+    padding: 24px 20px 28px;
+    border-radius: 0 0 20px 20px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 350px) {
+  main {
+    padding: 12px 8px;
+  }
+
+  .brand {
+    gap: 12px;
+    padding: 20px 16px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .intro {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .intro h1 {
+    font-size: 24px;
+  }
+
+  .notice {
+    padding: 16px;
+  }
+
+  .notice::before {
+    right: 16px;
+    left: 16px;
+  }
+
+  .notice > svg {
+    margin-left: 10px;
+    flex-basis: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .notice .txt {
+    padding-right: 10px;
+  }
+
+  .notice h2 {
+    font-size: 16px;
+  }
+
+  .map {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .map h2 {
+    padding: 12px;
+  }
+
+  .map iframe {
+    height: 480px;
+  }
+
+  .actions,
+  .help {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .entry {
+    padding: 14px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entry {
+    transition: none;
+  }
+}

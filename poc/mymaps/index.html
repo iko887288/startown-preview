@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="STarTown 首爾 K-pop 兩天一夜行程地圖測試。查看景點、切換每日圖層，並在 Google My Maps 開啟完整行程。">
+  <title>STarTown — 首爾 K-pop 兩天一夜（POC）</title>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <main>
+    <div class="wrap">
+      <header class="brand">
+        <span class="logo">STarTown</span>
+        <span class="badge">POC</span>
+      </header>
+
+      <section class="intro">
+        <h1>首爾 K-pop <span>兩天一夜</span></h1>
+        <p>跟著偶像足跡，探索首爾熱門景點。</p>
+      </section>
+
+      <aside class="notice" aria-label="使用地圖前的提醒">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="11" fill="currentColor" opacity=".14"/>
+          <path d="M12 10v7m0-10v.1" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <div class="txt">
+          <h2>使用前請先登入 Google 帳號</h2>
+          <p>為確保完整查看行程與景點資訊，請先登入 Google 帳號，無須註冊 STarTown。</p>
+        </div>
+      </aside>
+
+      <section class="map" aria-label="Google My Maps 行程地圖">
+        <h2>Google My Maps — 行程地圖</h2>
+        <iframe
+          src="https://www.google.com/maps/d/embed?mid=1aFO0afmMwTvzL7cKh5AvwkR-6mpm1fo&amp;ehbc=2E312F"
+          title="首爾 K-pop 兩天一夜：每日圖層與景點資訊"
+          width="960"
+          height="560"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </section>
+
+      <div class="actions">
+        <p>若內嵌地圖無法顯示或操作，請使用下方入口開啟完整地圖。</p>
+        <a class="entry" href="https://www.google.com/maps/d/viewer?mid=1aFO0afmMwTvzL7cKh5AvwkR-6mpm1fo" target="_blank" rel="noopener noreferrer">
+          <span>在 Google My Maps 查看完整行程</span>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+            <path d="M6 18 18 6M6 6h12v12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="sr-only">（另開分頁）</span>
+        </a>
+      </div>
+
+      <footer class="help">
+        <p>建議以 iPhone Safari、Android Chrome<br>及電腦瀏覽器進行測試。</p>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>
